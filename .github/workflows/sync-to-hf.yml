@@ -55,4 +55,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git commit -m "sprites.zip built from h0tp-ftw/ankimon-sprites@${{ github.sha }}"
-          git push --force https://h0tp:${HF_TOKEN}@huggingface.co/datasets/h0tp/ankimon main
+          git push --force https://h0tp:${HF_TOKEN}@huggingface.co/datasets/h0tp/ankimon-sprites main

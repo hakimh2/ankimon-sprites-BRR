@@ -18,7 +18,7 @@ jobs:
       - name: Build sprites.zip
         run: |
           cd ${{ github.workspace }}
-          zip -r sprites.zip . \
+          zip -rq sprites.zip . \
             -x ".git/*" \
             -x ".github/*" \
             -x "LICENSE" \

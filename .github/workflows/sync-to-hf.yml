@@ -30,9 +30,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Delete existing release if present
           gh release delete latest --yes 2>/dev/null || true
-          # Create new release with the ZIP
           gh release create latest sprites.zip \
             --title "Ankimon Sprites (latest)" \
             --notes "Auto-generated sprite archive.
@@ -42,18 +40,19 @@ jobs:
           **Commit:** ${{ github.sha }}" \
             --latest
 
-      - name: Push repo + ZIP to HuggingFace
+      - name: Push ZIP-only to HuggingFace
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # HuggingFace requires Git LFS for files >10MB
+          # Create a fresh repo with ONLY the ZIP (no binary sprite files)
+          tmp=$(mktemp -d)
+          cd "$tmp"
+          git init
           git lfs install
           git lfs track "sprites.zip"
+          cp "${{ github.workspace }}/sprites.zip" .
           git add .gitattributes sprites.zip
-          git commit -m "Auto-generated sprites.zip [skip ci]"
-
-          # Push everything (repo contents + LFS zip) to HuggingFace
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "sprites.zip built from h0tp-ftw/ankimon-sprites@${{ github.sha }}"
           git push --force https://h0tp:${HF_TOKEN}@huggingface.co/datasets/h0tp/ankimon main

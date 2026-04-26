@@ -1,0 +1,34 @@
+Ankimon Sprites Repository
+==========================
+
+DISCLAIMER
+----------
+This repository contains sprite assets used by the Ankimon addon for Anki.
+All Pokemon-related imagery, names, and trademarks are the property of
+Nintendo, The Pokemon Company, and Game Freak. This repository is a fan
+project and is not affiliated with, endorsed by, or sponsored by any of
+these entities.
+
+The maintainers of this repository make no claim of ownership over any
+Pokemon-related intellectual property. These assets are redistributed
+under the terms of their original licenses (see below) for use in the
+Ankimon open-source project.
+
+THE SOFTWARE AND ASSETS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS, MAINTAINERS, OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE, ASSETS, OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
+OR ASSETS.
+
+ASSET SOURCES
+-------------
+- Pokemon sprites sourced from PokeAPI (https://github.com/PokeAPI/sprites)
+  distributed under CC0 1.0 Universal License.
+- Sound effects from various public domain / fan-sourced collections.
+- Badge artwork created for Ankimon.
+
+See "PokeApi Sprites LICENSE.txt" for the full CC0 1.0 Universal License
+text covering the PokeAPI sprite assets.

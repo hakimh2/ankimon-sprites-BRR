@@ -49,9 +49,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Add sprites.zip to a temporary commit for HF (don't push to GitHub)
-          git add sprites.zip
+          # HuggingFace requires Git LFS for files >10MB
+          git lfs install
+          git lfs track "sprites.zip"
+          git add .gitattributes sprites.zip
           git commit -m "Auto-generated sprites.zip [skip ci]"
 
-          # Push everything (repo contents + zip) to HuggingFace
+          # Push everything (repo contents + LFS zip) to HuggingFace
           git push --force https://h0tp:${HF_TOKEN}@huggingface.co/datasets/h0tp/ankimon main

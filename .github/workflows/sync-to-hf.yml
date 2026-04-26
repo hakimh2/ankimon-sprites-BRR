@@ -1,19 +1,57 @@
-name: Sync to HuggingFace
+name: Build ZIP & Sync to HuggingFace
 
 on:
   push:
     branches: [main]
 
 jobs:
-  sync:
+  build-and-sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Push to HuggingFace
+      - name: Build sprites.zip
+        run: |
+          cd ${{ github.workspace }}
+          zip -r sprites.zip . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x "LICENSE" \
+            -x "*.md"
+          echo "ZIP_SIZE=$(du -h sprites.zip | cut -f1)" >> $GITHUB_ENV
+          echo "ZIP_SHA256=$(sha256sum sprites.zip | cut -d' ' -f1)" >> $GITHUB_ENV
+
+      - name: Update GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Delete existing release if present
+          gh release delete latest --yes 2>/dev/null || true
+          # Create new release with the ZIP
+          gh release create latest sprites.zip \
+            --title "Ankimon Sprites (latest)" \
+            --notes "Auto-generated sprite archive.
+
+          **SHA256:** \`${ZIP_SHA256}\`
+          **Size:** ${ZIP_SIZE}
+          **Commit:** ${{ github.sha }}" \
+            --latest
+
+      - name: Push repo + ZIP to HuggingFace
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Add sprites.zip to a temporary commit for HF (don't push to GitHub)
+          git add sprites.zip
+          git commit -m "Auto-generated sprites.zip [skip ci]"
+
+          # Push everything (repo contents + zip) to HuggingFace
           git push --force https://h0tp:${HF_TOKEN}@huggingface.co/datasets/h0tp/ankimon main

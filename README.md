@@ -47,4 +47,6 @@ The ZIP and HuggingFace mirror update automatically on merge.
 
 All Pokemon-related imagery, names, and trademarks are the property of Nintendo, The Pokemon Company, and Game Freak. See [LICENSE](LICENSE) for full disclaimer.
 
-Sprite assets sourced from [PokeAPI](https://github.com/PokeAPI/sprites) under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
+Sprite assets sourced from:
+- [PokeAPI](https://github.com/PokeAPI/sprites) under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
+- [Pokémon Showdown](https://github.com/smogon/pokemon-showdown) / [Smogon Sprite Project](https://www.smogon.com/forums/threads/3686990/).

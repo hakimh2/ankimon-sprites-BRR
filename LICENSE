@@ -25,8 +25,9 @@ OR ASSETS.
 
 ASSET SOURCES
 -------------
-- Pokemon sprites sourced from PokeAPI (https://github.com/PokeAPI/sprites)
-  distributed under CC0 1.0 Universal License.
+- Pokemon sprites sourced from:
+  * PokeAPI (https://github.com/PokeAPI/sprites) distributed under CC0 1.0 Universal License.
+  * Pokémon Showdown / Smogon Sprite Project (https://github.com/smogon/pokemon-showdown).
 - Sound effects from various public domain / fan-sourced collections.
 - Badge artwork created for Ankimon.
 
